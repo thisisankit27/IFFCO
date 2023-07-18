@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>HRMS Admin Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        body {
+            margin-top: 20px;
+            background-color: #f2f6fc;
+            color: #69707a;
+        }
+
+        .img-account-profile {
+            height: 10rem;
+        }
+
+        .rounded-circle {
+            border-radius: 50% !important;
+        }
+
+        .card {
+            box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
+        }
+
+        .card .card-header {
+            font-weight: 500;
+        }
+
+        .card-header:first-child {
+            border-radius: 0.35rem 0.35rem 0 0;
+        }
+
+        .card-header {
+            padding: 1rem 1.35rem;
+            margin-bottom: 0;
+            background-color: rgba(33, 40, 50, 0.03);
+            border-bottom: 1px solid rgba(33, 40, 50, 0.125);
+        }
+
+        .form-control,
+        .dataTable-input {
+            display: block;
+            width: 100%;
+            padding: 0.875rem 1.125rem;
+            font-size: 0.875rem;
+            font-weight: 400;
+            line-height: 1;
+            color: #69707a;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #c5ccd6;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border-radius: 0.35rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        .nav-borders .nav-link.active {
+            color: #0061f2;
+            border-bottom-color: #0061f2;
+        }
+
+        .nav-borders .nav-link {
+            color: #69707a;
+            border-bottom-width: 0.125rem;
+            border-bottom-style: solid;
+            border-bottom-color: transparent;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }
+
+        .logout-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            margin-right: 5px;
+        }
+
+        .logout-button:first-child {
+            margin-right: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-xl px-4 mt-4">
+        <a class="btn btn-primary logout-button" href="/register">Create User</a>
+        <a class="btn btn-primary logout-button" href="/logout">Logout</a>
+        <nav class="nav nav-borders">
+            <a class="nav-link active ms-0" href="/">Profile</a>
+            <a class="nav-link" href="staff_emp_list">Employees</a>
+            <a class="nav-link" href="#">Departments</a>
+            <a class="nav-link" href="/staff_emp_attendance">Attendance</a>
+        </nav>
+        <hr class="mt-0 mb-4">
+        <div class="row">
+            <div class="col-xl-4">
+                <div class="card mb-4 mb-xl-0">
+                    <div class="card-header">Profile Picture</div>
+                    <div class="card-body text-center">
+                        <img class="img-account-profile rounded-circle mb-2"
+                            src="http://bootdey.com/img/Content/avatar/avatar1.png" alt>
+                        <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                        <button class="btn btn-primary" type="button">Upload new image</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8">
+                <div class="card mb-4">
+                    <div class="card-header">Employee Detail</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img class="img-account-profile rounded-circle mb-2"
+                                    src="http://bootdey.com/img/Content/avatar/avatar1.png" alt>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="text-center">
+                                    <h5 class="card-title">{{ emp_user.user.first_name }} {{ emp_user.user.last_name }}
+                                    </h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">{{ emp_user.user.username }}</h6>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p class="card-text">
+                                            <strong>Date of Birth:</strong> {{ dob_string }}<br>
+                                            <strong>Date of Joining:</strong> {{ doj_string }}<br>
+                                            <strong>Qualification:</strong> {{ emp_user.qualification }}<br>
+                                            <strong>Address:</strong> {{ emp_user.address }}<br>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p class="card-text">
+                                            <strong>PAN:</strong> {{ emp_user.pan }}<br>
+                                            <strong>Aadhar:</strong> {{ emp_user.aadhar }}<br>
+                                            <strong>Employee Status:</strong> {{ emp_user.get_emp_status_display }}<br>
+                                            <strong>Bank Account:</strong> {{ emp_user.bank_account }}<br>
+
+                                        </p>
+                                    </div>
+                                </div>
+                                <hr>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul class="list-unstyled" style="font-size: 0.875rem;">
+                                    <li><strong>Created By:</strong> {{ emp_user.created_by }}</li>
+                                    <li><strong>Created Date:</strong> {{ emp_user.created_dt }}</li>
+                                    <li><strong>Updated By:</strong> {{ emp_user.updated_by }}</li>
+                                    <li><strong>Updated Date:</strong> {{ emp_user.updated_dt }}</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="card-text">
+                                    <strong>Basic Salary:</strong> {{ emp_user.basic_salary }}<br>
+                                    <strong>DA Percentage:</strong> {{ salary.DA_per }}%<br>
+                                    <strong>Allowances Percentage:</strong> {{ salary.Allowances_per }}%<br>
+                                    <strong>Total Income:</strong> {{ salary.total_income }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+    </script>
+</body>
+
+</html>

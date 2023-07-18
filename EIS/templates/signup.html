@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>EIS - Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        body {
+            margin-top: 20px;
+            background-color: #f2f6fc;
+            color: #69707a;
+            background-image: url("/static/images/login_background.jpg");
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .card {
+            box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
+        }
+
+        .card .card-header {
+            font-weight: 500;
+        }
+
+        .card-header:first-child {
+            border-radius: 0.35rem 0.35rem 0 0;
+        }
+
+        .card-header {
+            padding: 1rem 1.35rem;
+            margin-bottom: 0;
+            background-color: rgba(33, 40, 50, 0.03);
+            border-bottom: 1px solid rgba(33, 40, 50, 0.125);
+        }
+
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: 0.875rem 1.125rem;
+            font-size: 0.875rem;
+            font-weight: 400;
+            line-height: 1;
+            color: #69707a;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #c5ccd6;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border-radius: 0.35rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        .btn-primary {
+            color: #fff;
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            color: #fff;
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+
+        .logout-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-xl px-4 mt-4">
+        <a class="btn btn-danger logout-button" href="/">Home</a>
+        <div class="row justify-content-center">
+            <div class="col-xl-6">
+                <div class="card">
+                    <div class="card-header">Signup</div>
+                    <div class="card-body">
+                        <form method="POST" action="{% url 'register' %}">
+                            {% csrf_token %}
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label" for="inputFirstName">First Name</label>
+                                    <input name="first_name" class="form-control" id="inputFirstName" type="text"
+                                        placeholder="Enter your first name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="inputLastName">Last Name</label>
+                                    <input name="last_name" class="form-control" id="inputLastName" type="text"
+                                        placeholder="Enter your last name" required>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label" for="inputUsername">Username</label>
+                                    <input name="username" class="form-control" id="inputUsername" type="text"
+                                        placeholder="Enter your username" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="inputDOB">Date of Birth</label>
+                                    <input name="dob" class="form-control" id="inputDOB" type="date"
+                                        placeholder="Enter your date of birth" required>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label" for="inputPassword">Password</label>
+                                    <input name="password" class="form-control" id="inputPassword" type="password"
+                                        placeholder="Enter your password" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="inputConfirmPassword">Confirm Password</label>
+                                    <input name="password2" class="form-control" id="inputConfirmPassword"
+                                        type="password" placeholder="Confirm your password" required>
+                                </div>
+
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label" for="inputDOJ">Date of Joining</label>
+                                    <input name="doj" class="form-control" id="inputDOJ" type="date"
+                                        placeholder="Enter your date of joining" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="inputQualification">Qualification</label>
+                                    <select name="qualification" class="form-control" id="inputQualification" required>
+                                        <option value="">Select Qualification</option>
+                                        <option value="Elementary School">Elementary School</option>
+                                        <option value="Diploma">Diploma</option>
+                                        <option value="Graduate">Graduate</option>
+                                        <option value="Post Graduate">Post Graduate</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label" for="inputAddress">Address</label>
+                                    <input name="address" class="form-control" id="inputAddress" type="text"
+                                        placeholder="Enter your address" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="inputPAN">PAN</label>
+                                    <input name="pan" class="form-control" id="inputPAN" type="text"
+                                        placeholder="Enter your PAN number" required>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label" for="inputAadhar">Aadhar Number</label>
+                                    <input name="aadhar" class="form-control" id="inputAadhar" type="text"
+                                        placeholder="Enter your Aadhar number" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="inputEmpStatus">Employee Status</label>
+                                    <select name="emp_status" class="form-control" id="inputEmpStatus" required>
+                                        <option value="active">Active</option>
+                                        <option value="retired">Retired</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label" for="inputBankAccount">Bank Account</label>
+                                    <input name="bank_account" class="form-control" id="inputBankAccount" type="text"
+                                        placeholder="Enter your bank account number" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="inputBasicSalary">Basic Salary</label>
+                                    <input name="basic_salary" class="form-control" id="inputBasicSalary" type="number"
+                                        step="10000" placeholder="Enter your basic salary" required>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label" for="input_da">DA(%)</label>
+                                    <input name="da" class="form-control" id="input_da" type="number" step=".01"
+                                        placeholder="Enter your DA" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="input_allowance">Allowance(%)</label>
+                                    <input name="allowance" class="form-control" id="input_allowance" type="number"
+                                        step=".01" placeholder="Enter your basic salary" required>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    {% for mssg in messages %}
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ mssg }}
+                                    </div>
+                                    {% endfor %}
+                                    <button class="btn btn-primary" type="submit">Sign Up</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
